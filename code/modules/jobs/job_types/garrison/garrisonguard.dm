@@ -59,7 +59,7 @@
 	beltr = /obj/item/weapon/sword/short/iron
 	beltl = /obj/item/weapon/mace/cudgel
 	scabbards = list(/obj/item/weapon/scabbard/sword)
-	backpack_contents = list(/obj/item/rope/chain)
+	backpack_contents = list(/obj/item/rope/chain, /obj/item/book/law)
 
 
 	H.adjust_skillrank(/datum/skill/combat/axesmaces, 3, TRUE) // Main weapon
@@ -98,7 +98,7 @@
 	backl = /obj/item/storage/backpack/satchel
 	beltr = /obj/item/ammo_holder/quiver/arrows
 	beltl = /obj/item/weapon/mace/cudgel
-	backpack_contents = list(/obj/item/rope/chain)
+	backpack_contents = list(/obj/item/rope/chain, /obj/item/book/law)
 	if(H.mind)
 		H.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE) // Main Weapon
 		H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE) // You don't even have access to crossbows
@@ -138,7 +138,7 @@
 	beltl = /obj/item/weapon/sword/short/iron
 	beltr = /obj/item/weapon/mace/cudgel
 	scabbards = list(/obj/item/weapon/scabbard/sword)
-	backpack_contents = list(/obj/item/rope/chain)
+	backpack_contents = list(/obj/item/rope/chain, /obj/item/book/law)
 
 	//Stats for class
 	H.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)

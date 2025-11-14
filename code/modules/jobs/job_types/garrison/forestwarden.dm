@@ -26,6 +26,16 @@
 
 	job_bitflag = BITFLAG_GARRISON
 
+/datum/job/forestwarden/after_spawn(mob/living/carbon/human/spawned, client/player_client)
+	. = ..()
+	var/prev_real_name = spawned.real_name
+	var/prev_name = spawned.name
+	var/honorary = "Sir"
+	if(spawned.gender == FEMALE)
+		honorary = "Dame"
+	spawned.real_name = "[honorary] [prev_real_name]"
+	spawned.name = "[honorary] [prev_name]"
+
 /datum/outfit/forestwarden/pre_equip(mob/living/carbon/human/H)
 	..()
 	cloak = /obj/item/clothing/cloak/wardencloak
@@ -42,7 +52,7 @@
 	beltr = /obj/item/storage/belt/pouch/coins/mid
 	backr = /obj/item/weapon/polearm/halberd/bardiche/warcutter
 	backl = /obj/item/storage/backpack/satchel
-	backpack_contents = list(/obj/item/weapon/knife/hunting = 1, /obj/item/rope/chain = 1, /obj/item/key/forrestgarrison = 1, /obj/item/signal_horn = 1)
+	backpack_contents = list(/obj/item/weapon/knife/hunting = 1, /obj/item/rope/chain = 1, /obj/item/key/forrestgarrison = 1, /obj/item/signal_horn = 1, /obj/item/book/law)
 
 	H.adjust_skillrank(/datum/skill/combat/axesmaces, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
