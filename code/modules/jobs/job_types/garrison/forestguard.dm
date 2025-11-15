@@ -18,7 +18,7 @@
 	bypass_lastclass = TRUE
 	selection_color = "#0d6929"
 
-	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD, AGE_IMMORTAL, AGE_CHILD)
+	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD, AGE_IMMORTAL)
 	allowed_races = RACES_PLAYER_GUARD
 	blacklisted_species = list(SPEC_ID_HALFLING)
 	give_bank_account = 30
@@ -232,57 +232,3 @@
 	beltl = /obj/item/weapon/knife/hunting
 	backpack_contents = list(/obj/item/clothing/gloves/bandages/pugilist = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/pouch/coins/poor)
 	scabbards = list(/obj/item/weapon/scabbard/knife)
-
-// Ruffian, knives, bows and a lot of cooking.
-/datum/job/advclass/forestguard/ruffian
-	title = "Forest Ruffian"
-	tutorial = "For your terrible orphan pranks and antics in the city, you were rounded up by the city's Watch and put to work in the infamous forest garrison. \n\n A ruffian by circumstance, a proven listener of war stories - you might just become more than a troublemaker."
-	outfit = /datum/outfit/forestguard/ruffian
-	category_tags = list(CTAG_FORGARRISON)
-	allowed_ages = list(AGE_CHILD)
-
-
-/datum/outfit/forestguard/ruffian/pre_equip(mob/living/carbon/human/H)
-	..()
-	head = /obj/item/clothing/head/helmet/medium/decorated/rousskullmet //placeholder, I have to sprite something new for the Brats, like a gator skull
-	neck = /obj/item/clothing/neck/highcollier
-	shirt = /obj/item/clothing/shirt/undershirt/colored/black
-	beltl = /obj/item/weapon/knife/dagger //just a normal iron dagger
-	beltr = /obj/item/ammo_holder/quiver/arrows
-	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow //placeholder, going to give them a slingshot in another PR later
-	armor = /obj/item/clothing/armor/leather
-	backpack_contents = list(/obj/item/weapon/knife/hunting = 1, /obj/item/cooking/pan = 1, /obj/item/reagent_containers/food/snacks/egg = 1)
-	H.verbs |= /mob/proc/haltyellorphan //pitch shifted for the lols
-
-	if(H.mind) //if you want your ruffians to have combat skills, take them up as apprentices
-		//otherwise, mix of orphan and ranger skills, with some labour skills to imply housework
-		H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE) //considering master climbing, I can make another youngling subclass for such
-		H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/carpentry, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/labor/butchering, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/crossbows, 1, TRUE) //weak fuck
-		H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/axesmaces, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
-		H.adjust_skillrank(/datum/skill/craft/tanning, 2, TRUE)
-		H.change_stat(STATKEY_STR, rand(-1,1)) //broadly conscripted street urchins, randomization keeps them from being too powerful/consistent. Moved to -1 so they can actually cut wood
-		H.change_stat(STATKEY_INT, round(rand(-2,2)))
-		H.change_stat(STATKEY_PER, 1)
-		H.change_stat(STATKEY_CON, rand(-1,1))
-		H.change_stat(STATKEY_END, rand(-1,1))
-		H.change_stat(STATKEY_LCK, rand(-4,4))//either really lucky or unlucky, like orphans
-		ADD_TRAIT(H, TRAIT_FORAGER, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ORPHAN, TRAIT_GENERIC) //someone please abuse this
-		ADD_TRAIT(H, TRAIT_BRUSHWALK, TRAIT_GENERIC)
-
-/mob/proc/haltyellorphan()
-	set name = "HALT!"
-	set category = "Noises"
-	emote("haltyellorphan")
